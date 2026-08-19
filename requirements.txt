@@ -1,0 +1,5 @@
+apache-airflow==2.10.5
+apache-airflow-providers-microsoft-mssql==4.0.0
+apache-airflow-providers-postgres==6.0.0
+pymssql==2.3.13
+psycopg2-binary==2.9.12

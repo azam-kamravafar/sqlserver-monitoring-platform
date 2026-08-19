@@ -1,0 +1,39 @@
+# Python
+__pycache__/
+*.py[cod]
+
+# Virtual environments
+venv/
+.venv/
+airflowenv/
+
+# Secrets
+.env
+.env.*
+!.env.example
+secrets/
+credentials/
+*.secret
+
+# Airflow local/runtime files
+airflow.cfg
+airflow-webserver.pid
+logs/
+
+# Local databases
+grafana.db
+airflow.db
+*.sqlite
+*.sqlite3
+
+# Backups
+*.bak
+*.backup
+
+# Editors
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db

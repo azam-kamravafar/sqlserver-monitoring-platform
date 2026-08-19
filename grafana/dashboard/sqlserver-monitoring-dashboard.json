@@ -1,0 +1,2299 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": null,
+  "links": [],
+  "liveNow": false,
+  "panels": [
+    {
+      "collapsed": true,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 9,
+      "panels": [
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "PDCD6D9A8C29BD18F"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  }
+                ]
+              },
+              "unit": "dateTimeAsLocal"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 5,
+            "w": 6,
+            "x": 0,
+            "y": 1
+          },
+          "id": 33,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "textMode": "auto"
+          },
+          "pluginVersion": "9.5.2",
+          "targets": [
+            {
+              "datasource": {
+                "type": "postgres",
+                "uid": "PDCD6D9A8C29BD18F"
+              },
+              "editorMode": "code",
+              "format": "table",
+              "rawQuery": true,
+              "rawSql": "SELECT\r\n    (\r\n        EXTRACT(EPOCH FROM MAX(collected_at)) * 1000\r\n    )::bigint AS value\r\nFROM monitoring.sqlserver_metrics;",
+              "refId": "A",
+              "sql": {
+                "columns": [
+                  {
+                    "parameters": [],
+                    "type": "function"
+                  }
+                ],
+                "groupBy": [
+                  {
+                    "property": {
+                      "type": "string"
+                    },
+                    "type": "groupBy"
+                  }
+                ],
+                "limit": 50
+              }
+            }
+          ],
+          "title": "آخرین زمان بروزرسانی داده‌ها",
+          "type": "stat"
+        },
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "PDCD6D9A8C29BD18F"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 5,
+            "w": 3,
+            "x": 6,
+            "y": 1
+          },
+          "id": 2,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "textMode": "auto"
+          },
+          "pluginVersion": "9.5.2",
+          "targets": [
+            {
+              "datasource": {
+                "type": "postgres",
+                "uid": "PDCD6D9A8C29BD18F"
+              },
+              "editorMode": "code",
+              "format": "table",
+              "rawQuery": true,
+              "rawSql": "SELECT\r\n    metric_value AS value\r\nFROM monitoring.sqlserver_metrics\r\nWHERE metric_name = 'user_sessions'\r\n  AND database_name IS NULL\r\nORDER BY collected_at DESC\r\nLIMIT 1;",
+              "refId": "A",
+              "sql": {
+                "columns": [
+                  {
+                    "parameters": [],
+                    "type": "function"
+                  }
+                ],
+                "groupBy": [
+                  {
+                    "property": {
+                      "type": "string"
+                    },
+                    "type": "groupBy"
+                  }
+                ],
+                "limit": 50
+              }
+            }
+          ],
+          "title": "نشست‌های کاربری",
+          "type": "stat"
+        },
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "PDCD6D9A8C29BD18F"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 5,
+            "w": 3,
+            "x": 9,
+            "y": 1
+          },
+          "id": 3,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "textMode": "auto"
+          },
+          "pluginVersion": "9.5.2",
+          "targets": [
+            {
+              "datasource": {
+                "type": "postgres",
+                "uid": "PDCD6D9A8C29BD18F"
+              },
+              "editorMode": "code",
+              "format": "table",
+              "rawQuery": true,
+              "rawSql": "SELECT\r\n    metric_value AS value\r\nFROM monitoring.sqlserver_metrics\r\nWHERE metric_name = 'running_requests'\r\n  AND database_name IS NULL\r\nORDER BY collected_at DESC\r\nLIMIT 1;",
+              "refId": "A",
+              "sql": {
+                "columns": [
+                  {
+                    "parameters": [],
+                    "type": "function"
+                  }
+                ],
+                "groupBy": [
+                  {
+                    "property": {
+                      "type": "string"
+                    },
+                    "type": "groupBy"
+                  }
+                ],
+                "limit": 50
+              }
+            }
+          ],
+          "title": "درخواست‌های در حال اجرا",
+          "type": "stat"
+        },
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "PDCD6D9A8C29BD18F"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 5,
+            "w": 3,
+            "x": 12,
+            "y": 1
+          },
+          "id": 4,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "textMode": "auto"
+          },
+          "pluginVersion": "9.5.2",
+          "targets": [
+            {
+              "datasource": {
+                "type": "postgres",
+                "uid": "PDCD6D9A8C29BD18F"
+              },
+              "editorMode": "code",
+              "format": "table",
+              "rawQuery": true,
+              "rawSql": "SELECT\r\n    metric_value AS value\r\nFROM monitoring.sqlserver_metrics\r\nWHERE metric_name = 'blocked_requests'\r\n  AND database_name IS NULL\r\nORDER BY collected_at DESC\r\nLIMIT 1;",
+              "refId": "A",
+              "sql": {
+                "columns": [
+                  {
+                    "parameters": [],
+                    "type": "function"
+                  }
+                ],
+                "groupBy": [
+                  {
+                    "property": {
+                      "type": "string"
+                    },
+                    "type": "groupBy"
+                  }
+                ],
+                "limit": 50
+              }
+            }
+          ],
+          "title": "درخواست‌های مسدود شده",
+          "type": "stat"
+        },
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "PDCD6D9A8C29BD18F"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "decimals": 0,
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  }
+                ]
+              },
+              "unit": "decmbytes"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 5,
+            "w": 5,
+            "x": 15,
+            "y": 1
+          },
+          "id": 5,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "textMode": "auto"
+          },
+          "pluginVersion": "9.5.2",
+          "targets": [
+            {
+              "datasource": {
+                "type": "postgres",
+                "uid": "PDCD6D9A8C29BD18F"
+              },
+              "editorMode": "code",
+              "format": "table",
+              "rawQuery": true,
+              "rawSql": "SELECT\r\n    metric_value AS value\r\nFROM monitoring.sqlserver_metrics\r\nWHERE metric_name = 'sqlserver_memory_mb'\r\n  AND database_name IS NULL\r\nORDER BY collected_at DESC\r\nLIMIT 1;",
+              "refId": "A",
+              "sql": {
+                "columns": [
+                  {
+                    "parameters": [],
+                    "type": "function"
+                  }
+                ],
+                "groupBy": [
+                  {
+                    "property": {
+                      "type": "string"
+                    },
+                    "type": "groupBy"
+                  }
+                ],
+                "limit": 50
+              }
+            }
+          ],
+          "title": "حافظه مصرفی SQL Server",
+          "type": "stat"
+        },
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "PDCD6D9A8C29BD18F"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  }
+                ]
+              },
+              "unit": "decmbytes"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 5,
+            "w": 4,
+            "x": 20,
+            "y": 1
+          },
+          "id": 6,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "textMode": "auto"
+          },
+          "pluginVersion": "9.5.2",
+          "targets": [
+            {
+              "datasource": {
+                "type": "postgres",
+                "uid": "PDCD6D9A8C29BD18F"
+              },
+              "editorMode": "code",
+              "format": "table",
+              "rawQuery": true,
+              "rawSql": "SELECT\r\n    metric_value AS value\r\nFROM monitoring.sqlserver_metrics\r\nWHERE metric_name = 'available_os_memory_mb'\r\n  AND database_name IS NULL\r\nORDER BY collected_at DESC\r\nLIMIT 1;",
+              "refId": "A",
+              "sql": {
+                "columns": [
+                  {
+                    "parameters": [],
+                    "type": "function"
+                  }
+                ],
+                "groupBy": [
+                  {
+                    "property": {
+                      "type": "string"
+                    },
+                    "type": "groupBy"
+                  }
+                ],
+                "limit": 50
+              }
+            }
+          ],
+          "title": "حافظه در دسترس سیستم",
+          "type": "stat"
+        },
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "PDCD6D9A8C29BD18F"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 7,
+            "w": 12,
+            "x": 0,
+            "y": 6
+          },
+          "id": 7,
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "list",
+              "placement": "bottom",
+              "showLegend": true
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "targets": [
+            {
+              "datasource": {
+                "type": "postgres",
+                "uid": "PDCD6D9A8C29BD18F"
+              },
+              "editorMode": "code",
+              "format": "table",
+              "rawQuery": true,
+              "rawSql": "SELECT\r\n    $__timeGroupAlias(collected_at, '5m'),\r\n\r\n    AVG(metric_value) FILTER (\r\n        WHERE metric_name = 'user_sessions'\r\n    ) AS \"نشست‌های کاربری\",\r\n\r\n    AVG(metric_value) FILTER (\r\n        WHERE metric_name = 'running_requests'\r\n    ) AS \"درخواست‌های در حال اجرا\",\r\n\r\n    AVG(metric_value) FILTER (\r\n        WHERE metric_name = 'blocked_requests'\r\n    ) AS \"درخواست‌های مسدودشده\"\r\n\r\nFROM monitoring.sqlserver_metrics\r\n\r\nWHERE database_name IS NULL\r\n  AND metric_name IN (\r\n      'user_sessions',\r\n      'running_requests',\r\n      'blocked_requests'\r\n  )\r\n  AND $__timeFilter(collected_at)\r\n\r\nGROUP BY 1\r\nORDER BY 1;",
+              "refId": "A",
+              "sql": {
+                "columns": [
+                  {
+                    "parameters": [],
+                    "type": "function"
+                  }
+                ],
+                "groupBy": [
+                  {
+                    "property": {
+                      "type": "string"
+                    },
+                    "type": "groupBy"
+                  }
+                ],
+                "limit": 50
+              }
+            }
+          ],
+          "title": "روند فعالیت SQL Server",
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "PDCD6D9A8C29BD18F"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "decmbytes"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 7,
+            "w": 12,
+            "x": 12,
+            "y": 6
+          },
+          "id": 8,
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "list",
+              "placement": "bottom",
+              "showLegend": true
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "targets": [
+            {
+              "datasource": {
+                "type": "postgres",
+                "uid": "PDCD6D9A8C29BD18F"
+              },
+              "editorMode": "code",
+              "format": "table",
+              "rawQuery": true,
+              "rawSql": "SELECT\r\n    $__timeGroupAlias(collected_at, '5m'),\r\n\r\n    AVG(metric_value) FILTER (\r\n        WHERE metric_name = 'sqlserver_memory_mb'\r\n    ) AS \"حافظه مصرفی SQL Server\",\r\n\r\n    AVG(metric_value) FILTER (\r\n        WHERE metric_name = 'available_os_memory_mb'\r\n    ) AS \"حافظه در دسترس سیستم\"\r\n\r\nFROM monitoring.sqlserver_metrics\r\n\r\nWHERE database_name IS NULL\r\n  AND metric_name IN (\r\n      'sqlserver_memory_mb',\r\n      'available_os_memory_mb'\r\n  )\r\n  AND $__timeFilter(collected_at)\r\n\r\nGROUP BY 1\r\nORDER BY 1;",
+              "refId": "A",
+              "sql": {
+                "columns": [
+                  {
+                    "parameters": [],
+                    "type": "function"
+                  }
+                ],
+                "groupBy": [
+                  {
+                    "property": {
+                      "type": "string"
+                    },
+                    "type": "groupBy"
+                  }
+                ],
+                "limit": 50
+              }
+            }
+          ],
+          "title": "روند حافظه SQL Server و سیستم‌عامل",
+          "type": "timeseries"
+        }
+      ],
+      "title": "نمای کلی سرور",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 1
+      },
+      "id": 11,
+      "panels": [
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "PDCD6D9A8C29BD18F"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [
+                {
+                  "options": {
+                    "0": {
+                      "color": "red",
+                      "index": 1,
+                      "text": "آفلاین"
+                    },
+                    "1": {
+                      "color": "green",
+                      "index": 0,
+                      "text": "آنلاین"
+                    }
+                  },
+                  "type": "value"
+                }
+              ],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 4,
+            "w": 6,
+            "x": 0,
+            "y": 2
+          },
+          "id": 10,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "textMode": "auto"
+          },
+          "pluginVersion": "9.5.2",
+          "targets": [
+            {
+              "datasource": {
+                "type": "postgres",
+                "uid": "PDCD6D9A8C29BD18F"
+              },
+              "editorMode": "code",
+              "format": "table",
+              "rawQuery": true,
+              "rawSql": "SELECT\r\n    metric_value AS value\r\nFROM monitoring.sqlserver_metrics\r\nWHERE metric_name = 'database_online'\r\n  AND database_name = '$database'\r\nORDER BY collected_at DESC\r\nLIMIT 1;",
+              "refId": "A",
+              "sql": {
+                "columns": [
+                  {
+                    "parameters": [],
+                    "type": "function"
+                  }
+                ],
+                "groupBy": [
+                  {
+                    "property": {
+                      "type": "string"
+                    },
+                    "type": "groupBy"
+                  }
+                ],
+                "limit": 50
+              }
+            }
+          ],
+          "title": "وضعیت پایگاه داده",
+          "type": "stat"
+        },
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "PDCD6D9A8C29BD18F"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "decimals": 1,
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  }
+                ]
+              },
+              "unit": "decmbytes"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 4,
+            "w": 6,
+            "x": 6,
+            "y": 2
+          },
+          "id": 12,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "textMode": "auto"
+          },
+          "pluginVersion": "9.5.2",
+          "targets": [
+            {
+              "datasource": {
+                "type": "postgres",
+                "uid": "PDCD6D9A8C29BD18F"
+              },
+              "editorMode": "code",
+              "format": "table",
+              "rawQuery": true,
+              "rawSql": "SELECT\r\n    metric_value AS value\r\nFROM monitoring.sqlserver_metrics\r\nWHERE metric_name = 'data_size_mb'\r\n  AND database_name = '$database'\r\nORDER BY collected_at DESC\r\nLIMIT 1;",
+              "refId": "A",
+              "sql": {
+                "columns": [
+                  {
+                    "parameters": [],
+                    "type": "function"
+                  }
+                ],
+                "groupBy": [
+                  {
+                    "property": {
+                      "type": "string"
+                    },
+                    "type": "groupBy"
+                  }
+                ],
+                "limit": 50
+              }
+            }
+          ],
+          "title": "حجم داده",
+          "type": "stat"
+        },
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "PDCD6D9A8C29BD18F"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "decimals": 1,
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  }
+                ]
+              },
+              "unit": "decmbytes"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 4,
+            "w": 6,
+            "x": 12,
+            "y": 2
+          },
+          "id": 13,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "textMode": "auto"
+          },
+          "pluginVersion": "9.5.2",
+          "targets": [
+            {
+              "datasource": {
+                "type": "postgres",
+                "uid": "PDCD6D9A8C29BD18F"
+              },
+              "editorMode": "code",
+              "format": "table",
+              "rawQuery": true,
+              "rawSql": "SELECT\r\n    metric_value AS value\r\nFROM monitoring.sqlserver_metrics\r\nWHERE metric_name = 'log_size_mb'\r\n  AND database_name = '$database'\r\nORDER BY collected_at DESC\r\nLIMIT 1;",
+              "refId": "A",
+              "sql": {
+                "columns": [
+                  {
+                    "parameters": [],
+                    "type": "function"
+                  }
+                ],
+                "groupBy": [
+                  {
+                    "property": {
+                      "type": "string"
+                    },
+                    "type": "groupBy"
+                  }
+                ],
+                "limit": 50
+              }
+            }
+          ],
+          "title": "حجم فایل لاگ",
+          "type": "stat"
+        },
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "PDCD6D9A8C29BD18F"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "decimals": 0,
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "none"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 4,
+            "w": 6,
+            "x": 18,
+            "y": 2
+          },
+          "id": 14,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "textMode": "auto"
+          },
+          "pluginVersion": "9.5.2",
+          "targets": [
+            {
+              "datasource": {
+                "type": "postgres",
+                "uid": "PDCD6D9A8C29BD18F"
+              },
+              "editorMode": "code",
+              "format": "table",
+              "rawQuery": true,
+              "rawSql": "SELECT\r\n    metric_value AS value\r\nFROM monitoring.sqlserver_metrics\r\nWHERE metric_name = 'user_connections'\r\n  AND database_name = '$database'\r\nORDER BY collected_at DESC\r\nLIMIT 1;",
+              "refId": "A",
+              "sql": {
+                "columns": [
+                  {
+                    "parameters": [],
+                    "type": "function"
+                  }
+                ],
+                "groupBy": [
+                  {
+                    "property": {
+                      "type": "string"
+                    },
+                    "type": "groupBy"
+                  }
+                ],
+                "limit": 50
+              }
+            }
+          ],
+          "title": "اتصالات کاربری",
+          "type": "stat"
+        }
+      ],
+      "title": "نمای کلی پایگاه داده",
+      "type": "row"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 2
+      },
+      "id": 15,
+      "panels": [],
+      "title": "عملکرد ورودی/خروجی پایگاه داده",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "postgres",
+        "uid": "PDCD6D9A8C29BD18F"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 2,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "ms"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 12,
+        "x": 0,
+        "y": 3
+      },
+      "id": 19,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.5.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "PDCD6D9A8C29BD18F"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT\r\n    metric_value AS value\r\nFROM monitoring.sqlserver_metrics\r\nWHERE metric_name = 'avg_write_latency_ms'\r\n  AND database_name = '$database'\r\nORDER BY collected_at DESC\r\nLIMIT 1;",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "میانگین تأخیر نوشتن",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "postgres",
+        "uid": "PDCD6D9A8C29BD18F"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 2,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "ms"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 12,
+        "x": 12,
+        "y": 3
+      },
+      "id": 18,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.5.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "PDCD6D9A8C29BD18F"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT\r\n    metric_value AS value\r\nFROM monitoring.sqlserver_metrics\r\nWHERE metric_name = 'avg_read_latency_ms'\r\n  AND database_name = '$database'\r\nORDER BY collected_at DESC\r\nLIMIT 1;",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "میانگین تأخیر خواندن",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "postgres",
+        "uid": "PDCD6D9A8C29BD18F"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "decimals": 0,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 8,
+        "x": 0,
+        "y": 8
+      },
+      "id": 20,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "PDCD6D9A8C29BD18F"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "WITH io_data AS (\r\n    SELECT\r\n        collected_at,\r\n        metric_name,\r\n        metric_value,\r\n        LAG(metric_value) OVER (\r\n            PARTITION BY metric_name\r\n            ORDER BY collected_at\r\n        ) AS previous_value\r\n    FROM monitoring.sqlserver_metrics\r\n    WHERE database_name = '$database'\r\n      AND metric_name IN ('reads_total', 'writes_total')\r\n      AND $__timeFilter(collected_at)\r\n),\r\n\r\nio_delta AS (\r\n    SELECT\r\n        collected_at,\r\n        metric_name,\r\n        GREATEST(metric_value - previous_value, 0) AS delta_value\r\n    FROM io_data\r\n    WHERE previous_value IS NOT NULL\r\n)\r\n\r\nSELECT\r\n    collected_at AS \"time\",\r\n\r\n    MAX(delta_value) FILTER (\r\n        WHERE metric_name = 'reads_total'\r\n    ) AS \"عملیات خواندن\",\r\n\r\n    MAX(delta_value) FILTER (\r\n        WHERE metric_name = 'writes_total'\r\n    ) AS \"عملیات نوشتن\"\r\n\r\nFROM io_delta\r\nGROUP BY collected_at\r\nORDER BY collected_at;",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "روند عملیات خواندن و نوشتن",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "postgres",
+        "uid": "PDCD6D9A8C29BD18F"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "decimals": 2,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "ms"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 8,
+        "x": 8,
+        "y": 8
+      },
+      "id": 21,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "PDCD6D9A8C29BD18F"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT\r\n    collected_at AS \"time\",\r\n\r\n    MAX(metric_value) FILTER (\r\n        WHERE metric_name = 'avg_read_latency_ms'\r\n    ) AS \"تأخیر خواندن\",\r\n\r\n    MAX(metric_value) FILTER (\r\n        WHERE metric_name = 'avg_write_latency_ms'\r\n    ) AS \"تأخیر نوشتن\"\r\n\r\nFROM monitoring.sqlserver_metrics\r\n\r\nWHERE database_name = '$database'\r\n  AND metric_name IN (\r\n      'avg_read_latency_ms',\r\n      'avg_write_latency_ms'\r\n  )\r\n  AND $__timeFilter(collected_at)\r\n\r\nGROUP BY collected_at\r\nORDER BY collected_at;",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "روند تأخیر خواندن و نوشتن",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "postgres",
+        "uid": "PDCD6D9A8C29BD18F"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "decimals": 2,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "decmbytes"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 8,
+        "x": 16,
+        "y": 8
+      },
+      "id": 22,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "PDCD6D9A8C29BD18F"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "WITH io_volume AS (\r\n    SELECT\r\n        collected_at,\r\n        metric_name,\r\n        metric_value,\r\n        LAG(metric_value) OVER (\r\n            PARTITION BY metric_name\r\n            ORDER BY collected_at\r\n        ) AS previous_value\r\n    FROM monitoring.sqlserver_metrics\r\n    WHERE database_name = '$database'\r\n      AND metric_name IN (\r\n          'read_mb_total',\r\n          'write_mb_total'\r\n      )\r\n      AND $__timeFilter(collected_at)\r\n),\r\n\r\nio_delta AS (\r\n    SELECT\r\n        collected_at,\r\n        metric_name,\r\n        GREATEST(\r\n            metric_value - previous_value,\r\n            0\r\n        ) AS delta_mb\r\n    FROM io_volume\r\n    WHERE previous_value IS NOT NULL\r\n)\r\n\r\nSELECT\r\n    collected_at AS \"time\",\r\n\r\n    MAX(delta_mb) FILTER (\r\n        WHERE metric_name = 'read_mb_total'\r\n    ) AS \"حجم خوانده‌شده\",\r\n\r\n    MAX(delta_mb) FILTER (\r\n        WHERE metric_name = 'write_mb_total'\r\n    ) AS \"حجم نوشته‌شده\"\r\n\r\nFROM io_delta\r\nGROUP BY collected_at\r\nORDER BY collected_at;",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "روند حجم خواندن و نوشتن",
+      "type": "timeseries"
+    },
+    {
+      "collapsed": true,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 17
+      },
+      "id": 23,
+      "panels": [
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "PDCD6D9A8C29BD18F"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "custom": {
+                "align": "auto",
+                "cellOptions": {
+                  "type": "auto"
+                },
+                "inspect": false
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": [
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Schema"
+                },
+                "properties": [
+                  {
+                    "id": "custom.width",
+                    "value": 165
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Table"
+                },
+                "properties": [
+                  {
+                    "id": "custom.width",
+                    "value": 177
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Fragmentation %"
+                },
+                "properties": [
+                  {
+                    "id": "custom.width",
+                    "value": 337
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Index"
+                },
+                "properties": [
+                  {
+                    "id": "custom.width",
+                    "value": 546
+                  }
+                ]
+              }
+            ]
+          },
+          "gridPos": {
+            "h": 12,
+            "w": 24,
+            "x": 0,
+            "y": 20
+          },
+          "id": 24,
+          "options": {
+            "cellHeight": "sm",
+            "footer": {
+              "countRows": false,
+              "fields": "",
+              "reducer": [
+                "sum"
+              ],
+              "show": false
+            },
+            "showHeader": true,
+            "sortBy": []
+          },
+          "pluginVersion": "9.5.2",
+          "targets": [
+            {
+              "datasource": {
+                "type": "postgres",
+                "uid": "PDCD6D9A8C29BD18F"
+              },
+              "editorMode": "code",
+              "format": "table",
+              "rawQuery": true,
+              "rawSql": "WITH latest_snapshot AS (\r\n    SELECT MAX(collected_at) AS collected_at\r\n    FROM monitoring.sqlserver_index_fragmentation\r\n    WHERE database_name = '$database'\r\n)\r\n\r\nSELECT\r\n    schema_name AS \"اسکیما\",\r\n    table_name AS \"جدول\",\r\n    index_name AS \"ایندکس\",\r\n    ROUND(avg_fragmentation_percent::numeric, 2) AS \"درصد پراکندگی\",\r\n    page_count AS \"تعداد صفحات\"\r\nFROM monitoring.sqlserver_index_fragmentation\r\nWHERE database_name = '$database'\r\n  AND collected_at = (\r\n      SELECT collected_at\r\n      FROM latest_snapshot\r\n  )\r\n  AND index_id > 0\r\n  AND page_count >= 100\r\nORDER BY avg_fragmentation_percent DESC\r\nLIMIT 10;",
+              "refId": "A",
+              "sql": {
+                "columns": [
+                  {
+                    "parameters": [],
+                    "type": "function"
+                  }
+                ],
+                "groupBy": [
+                  {
+                    "property": {
+                      "type": "string"
+                    },
+                    "type": "groupBy"
+                  }
+                ],
+                "limit": 50
+              }
+            }
+          ],
+          "title": "۱۰ ایندکس با بیشترین پراکندگی (Fragmentation)",
+          "type": "table"
+        },
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "PDCD6D9A8C29BD18F"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "custom": {
+                "align": "auto",
+                "cellOptions": {
+                  "type": "auto"
+                },
+                "inspect": false
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": [
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "ایندکس"
+                },
+                "properties": [
+                  {
+                    "id": "custom.width",
+                    "value": 304
+                  }
+                ]
+              }
+            ]
+          },
+          "gridPos": {
+            "h": 6,
+            "w": 24,
+            "x": 0,
+            "y": 32
+          },
+          "id": 25,
+          "options": {
+            "cellHeight": "sm",
+            "footer": {
+              "countRows": false,
+              "fields": "",
+              "reducer": [
+                "sum"
+              ],
+              "show": false
+            },
+            "showHeader": true,
+            "sortBy": []
+          },
+          "pluginVersion": "9.5.2",
+          "targets": [
+            {
+              "datasource": {
+                "type": "postgres",
+                "uid": "PDCD6D9A8C29BD18F"
+              },
+              "editorMode": "code",
+              "format": "table",
+              "rawQuery": true,
+              "rawSql": "WITH latest_snapshot AS (\r\n    SELECT MAX(collected_at) AS collected_at\r\n    FROM monitoring.sqlserver_index_usage\r\n    WHERE database_name = '$database'\r\n)\r\n\r\nSELECT\r\n    schema_name AS \"اسکیما\",\r\n    table_name AS \"جدول\",\r\n    index_name AS \"ایندکس\",\r\n    user_seeks AS \"Seek\",\r\n    user_scans AS \"Scan\",\r\n    user_lookups AS \"Lookup\",\r\n    user_updates AS \"Update\",\r\n    (\r\n        user_seeks +\r\n        user_scans +\r\n        user_lookups\r\n    ) AS \"کل خواندن\"\r\nFROM monitoring.sqlserver_index_usage\r\nWHERE database_name = '$database'\r\n  AND collected_at = (\r\n      SELECT collected_at\r\n      FROM latest_snapshot\r\n  )\r\n  AND index_id > 0\r\n  AND (\r\n      user_seeks +\r\n      user_scans +\r\n      user_lookups\r\n  ) > 0\r\nORDER BY \"کل خواندن\" DESC\r\nLIMIT 10;",
+              "refId": "A",
+              "sql": {
+                "columns": [
+                  {
+                    "parameters": [],
+                    "type": "function"
+                  }
+                ],
+                "groupBy": [
+                  {
+                    "property": {
+                      "type": "string"
+                    },
+                    "type": "groupBy"
+                  }
+                ],
+                "limit": 50
+              }
+            }
+          ],
+          "title": " ایندکس های با بیشترین استفاده",
+          "type": "table"
+        },
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "PDCD6D9A8C29BD18F"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "custom": {
+                "align": "auto",
+                "cellOptions": {
+                  "type": "auto"
+                },
+                "inspect": false
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": [
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "اسکیما"
+                },
+                "properties": [
+                  {
+                    "id": "custom.width",
+                    "value": 78
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "جدول"
+                },
+                "properties": [
+                  {
+                    "id": "custom.width",
+                    "value": 124
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "ایندکس"
+                },
+                "properties": [
+                  {
+                    "id": "custom.width",
+                    "value": 520
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Seek"
+                },
+                "properties": [
+                  {
+                    "id": "custom.width",
+                    "value": 54
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Scan"
+                },
+                "properties": [
+                  {
+                    "id": "custom.width",
+                    "value": 62
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Lookup"
+                },
+                "properties": [
+                  {
+                    "id": "custom.width",
+                    "value": 69
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Update"
+                },
+                "properties": [
+                  {
+                    "id": "custom.width",
+                    "value": 67
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "آخرین Seek"
+                },
+                "properties": [
+                  {
+                    "id": "custom.width",
+                    "value": 86
+                  }
+                ]
+              }
+            ]
+          },
+          "gridPos": {
+            "h": 10,
+            "w": 19,
+            "x": 0,
+            "y": 38
+          },
+          "id": 26,
+          "options": {
+            "cellHeight": "sm",
+            "footer": {
+              "countRows": false,
+              "fields": "",
+              "reducer": [
+                "sum"
+              ],
+              "show": false
+            },
+            "showHeader": true,
+            "sortBy": []
+          },
+          "pluginVersion": "9.5.2",
+          "targets": [
+            {
+              "datasource": {
+                "type": "postgres",
+                "uid": "PDCD6D9A8C29BD18F"
+              },
+              "editorMode": "code",
+              "format": "table",
+              "rawQuery": true,
+              "rawSql": "WITH latest_snapshot AS (\r\n    SELECT MAX(collected_at) AS collected_at\r\n    FROM monitoring.sqlserver_index_usage\r\n    WHERE database_name = '$database'\r\n)\r\n\r\nSELECT\r\n    schema_name AS \"اسکیما\",\r\n    table_name AS \"جدول\",\r\n    index_name AS \"ایندکس\",\r\n    user_seeks AS \"Seek\",\r\n    user_scans AS \"Scan\",\r\n    user_lookups AS \"Lookup\",\r\n    user_updates AS \"Update\",\r\n    last_user_seek AS \"آخرین Seek\",\r\n    last_user_scan AS \"آخرین Scan\"\r\nFROM monitoring.sqlserver_index_usage\r\nWHERE database_name = '$database'\r\n  AND collected_at = (\r\n      SELECT collected_at\r\n      FROM latest_snapshot\r\n  )\r\n  AND index_id > 0\r\n  AND (\r\n      user_seeks +\r\n      user_scans +\r\n      user_lookups\r\n  ) = 0\r\nORDER BY\r\n    user_updates DESC,\r\n    table_name,\r\n    index_name\r\nLIMIT 20;",
+              "refId": "A",
+              "sql": {
+                "columns": [
+                  {
+                    "parameters": [],
+                    "type": "function"
+                  }
+                ],
+                "groupBy": [
+                  {
+                    "property": {
+                      "type": "string"
+                    },
+                    "type": "groupBy"
+                  }
+                ],
+                "limit": 50
+              }
+            }
+          ],
+          "title": "ایندکس‌های بدون خواندن ثبت‌شده",
+          "type": "table"
+        },
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "PDCD6D9A8C29BD18F"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "decimals": 0,
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "none"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 10,
+            "w": 5,
+            "x": 19,
+            "y": 38
+          },
+          "id": 27,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "textMode": "auto"
+          },
+          "pluginVersion": "9.5.2",
+          "targets": [
+            {
+              "datasource": {
+                "type": "postgres",
+                "uid": "PDCD6D9A8C29BD18F"
+              },
+              "editorMode": "code",
+              "format": "table",
+              "rawQuery": true,
+              "rawSql": "WITH latest_snapshot AS (\r\n    SELECT MAX(collected_at) AS collected_at\r\n    FROM monitoring.sqlserver_missing_indexes\r\n    WHERE database_name = '$database'\r\n)\r\n\r\nSELECT\r\n    COUNT(*) AS value\r\nFROM monitoring.sqlserver_missing_indexes\r\nWHERE database_name = '$database'\r\n  AND collected_at = (\r\n      SELECT collected_at\r\n      FROM latest_snapshot\r\n  );",
+              "refId": "A",
+              "sql": {
+                "columns": [
+                  {
+                    "parameters": [],
+                    "type": "function"
+                  }
+                ],
+                "groupBy": [
+                  {
+                    "property": {
+                      "type": "string"
+                    },
+                    "type": "groupBy"
+                  }
+                ],
+                "limit": 50
+              }
+            }
+          ],
+          "title": "تعداد پیشنهادهای ایندکس مفقود",
+          "type": "stat"
+        }
+      ],
+      "title": "پایش ایندکس‌ها",
+      "type": "row"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 18
+      },
+      "id": 29,
+      "panels": [],
+      "title": "تحلیل انتظارهای SQL Server",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "postgres",
+        "uid": "PDCD6D9A8C29BD18F"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "fillOpacity": 80,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineWidth": 1,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "decimals": 0,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "ms"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 15,
+        "x": 0,
+        "y": 19
+      },
+      "id": 32,
+      "options": {
+        "barRadius": 0,
+        "barWidth": 0.97,
+        "fullHighlight": false,
+        "groupWidth": 0.7,
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "orientation": "auto",
+        "showValue": "auto",
+        "stacking": "none",
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        },
+        "xTickLabelRotation": 0,
+        "xTickLabelSpacing": 0
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "PDCD6D9A8C29BD18F"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "WITH ordered_waits AS (\r\n    SELECT\r\n        wait_type,\r\n        collected_at,\r\n        wait_time_ms,\r\n\r\n        LAG(wait_time_ms) OVER (\r\n            PARTITION BY wait_type\r\n            ORDER BY collected_at\r\n        ) AS previous_wait_ms\r\n\r\n    FROM monitoring.sqlserver_wait_stats\r\n\r\n    WHERE $__timeFilter(collected_at)\r\n),\r\n\r\ndeltas AS (\r\n    SELECT\r\n        wait_type,\r\n        GREATEST(\r\n            wait_time_ms - previous_wait_ms,\r\n            0\r\n        ) AS delta_wait_ms\r\n\r\n    FROM ordered_waits\r\n\r\n    WHERE previous_wait_ms IS NOT NULL\r\n),\r\n\r\ncategorized AS (\r\n    SELECT\r\n        CASE\r\n\r\n            WHEN wait_type LIKE 'LCK_M_%'\r\n                THEN 'قفل‌گذاری'\r\n\r\n            WHEN wait_type IN (\r\n                'PAGEIOLATCH_SH',\r\n                'PAGEIOLATCH_EX',\r\n                'PAGEIOLATCH_UP',\r\n                'IO_COMPLETION',\r\n                'ASYNC_IO_COMPLETION',\r\n                'WRITELOG'\r\n            )\r\n                THEN 'ورودی/خروجی'\r\n\r\n            WHEN wait_type IN (\r\n                'SOS_SCHEDULER_YIELD',\r\n                'THREADPOOL'\r\n            )\r\n                THEN 'پردازنده و Scheduler'\r\n\r\n            WHEN wait_type IN (\r\n                'RESOURCE_SEMAPHORE',\r\n                'RESOURCE_SEMAPHORE_QUERY_COMPILE'\r\n            )\r\n                THEN 'حافظه'\r\n\r\n            WHEN wait_type IN (\r\n                'CXPACKET',\r\n                'CXCONSUMER'\r\n            )\r\n                THEN 'پردازش موازی'\r\n\r\n            WHEN wait_type = 'ASYNC_NETWORK_IO'\r\n                THEN 'شبکه / کلاینت'\r\n\r\n            ELSE NULL\r\n        END AS category,\r\n\r\n        delta_wait_ms\r\n\r\n    FROM deltas\r\n)\r\n\r\nSELECT\r\n    category AS \"دسته انتظار\",\r\n    ROUND(SUM(delta_wait_ms)::numeric, 0) AS \"زمان انتظار (ms)\"\r\n\r\nFROM categorized\r\n\r\nWHERE category IS NOT NULL\r\n\r\nGROUP BY category\r\nHAVING SUM(delta_wait_ms) > 0\r\n\r\nORDER BY SUM(delta_wait_ms) DESC;",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "دسته‌بندی انتظارهای عملکردی",
+      "type": "barchart"
+    }
+  ],
+  "refresh": "5m",
+  "schemaVersion": 38,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "current": {
+          "selected": false,
+          "text": "AdventureWorks2022",
+          "value": "AdventureWorks2022"
+        },
+        "datasource": {
+          "type": "postgres",
+          "uid": "PDCD6D9A8C29BD18F"
+        },
+        "definition": "SELECT DISTINCT database_name\nFROM monitoring.sqlserver_metrics\nWHERE database_name IS NOT NULL\nORDER BY database_name;",
+        "hide": 0,
+        "includeAll": false,
+        "label": "پایگاه داده",
+        "multi": false,
+        "name": "database",
+        "options": [],
+        "query": "SELECT DISTINCT database_name\nFROM monitoring.sqlserver_metrics\nWHERE database_name IS NOT NULL\nORDER BY database_name;",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "",
+  "title": "داشبورد پایش عملکرد SQL Server",
+  "uid": "a246be7c-97dc-4b0d-8bf8-4f1089ba6289",
+  "version": 21,
+  "weekStart": ""
+}
